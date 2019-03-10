@@ -278,7 +278,7 @@ function getCardId(value) {
   const w ='A2345678910JQK'.split('');
   const s = '♣♦♥♠';
   return s.indexOf(value.slice(-1))*13 
-  + w.indexOf(value.substring(0, value.length));
+  + w.indexOf(value.substring(0, value.length - 1));
 }
 
 module.exports = {
