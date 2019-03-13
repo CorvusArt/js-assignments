@@ -110,7 +110,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-  return value.repeat(count); // TODO: To know how to do it with cycle
+  return value.repeat(count);
 }
 
 /**
@@ -199,8 +199,8 @@ function extractEmails(str) {
  */
 function getRectangleString(width, height) {
   return `${'┌'}${'─'.repeat(width-2)}${'┐\n'
-  }${`${'│'}${' '.repeat(width-2)}${'│\n'}`.repeat(height-2)
-  }${'└'}${'─'.repeat(width-2)}${'┘\n'}`;
+          }${`${'│'}${' '.repeat(width-2)}${'│\n'}`.repeat(height-2)
+          }${'└'}${'─'.repeat(width-2)}${'┘\n'}`;
 }
 
 /**
@@ -224,11 +224,11 @@ function encodeToRot13(str) {
   const cipher = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
   return str.split('').map(letter => {
     const idx = alphabet.indexOf(letter);
-    if (idx === -1) {
-      return letter;
-    } else {
-      return cipher.charAt(idx);
-    }
+      if (idx === -1) {
+        return letter;
+      } else {
+        return cipher.charAt(idx);
+      }
   }).join('');
 }
 
@@ -256,7 +256,7 @@ function isString(value) {
  * Playing cards inittial deck inclides the cards in the following order:
  *
  *  'A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
- *  'A♣','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
+ *  'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
  *  'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
  *  'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'
  *
@@ -275,10 +275,9 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-  const w ='A2345678910JQK'.split('');
+  const w ='A234567891JQK';
   const s = '♣♦♥♠';
-  return s.indexOf(value.slice(-1))*13 
-  + w.indexOf(value.substring(0, value.length - 1));
+  return s.indexOf(value.slice(-1))*13 + w.indexOf(value.charAt(0));
 }
 
 module.exports = {
