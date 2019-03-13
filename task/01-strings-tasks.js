@@ -199,8 +199,8 @@ function extractEmails(str) {
  */
 function getRectangleString(width, height) {
   return `${'┌'}${'─'.repeat(width-2)}${'┐\n'
-          }${`${'│'}${' '.repeat(width-2)}${'│\n'}`.repeat(height-2)
-          }${'└'}${'─'.repeat(width-2)}${'┘\n'}`;
+  }${`${'│'}${' '.repeat(width-2)}${'│\n'}`.repeat(height-2)
+  }${'└'}${'─'.repeat(width-2)}${'┘\n'}`;
 }
 
 /**
@@ -224,11 +224,11 @@ function encodeToRot13(str) {
   const cipher = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
   return str.split('').map(letter => {
     const idx = alphabet.indexOf(letter);
-      if (idx === -1) {
-        return letter;
-      } else {
-        return cipher.charAt(idx);
-      }
+    if (idx === -1) {
+      return letter;
+    } else {
+      return cipher.charAt(idx);
+    }
   }).join('');
 }
 
