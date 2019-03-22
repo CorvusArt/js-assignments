@@ -208,10 +208,6 @@ function isPrime(n) {
     if (n % i === 0) return false;}
   return true;
 }
-     
-  
-  
-
 
 /**
  * Tries to convert value to number and returns it if conversion was successfull;
@@ -229,9 +225,8 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-  throw new Error('Not implemented');
+  return (value && +value) || def
 }
-
 module.exports = {
   getRectangleArea: getRectangleArea,
   getCicleCircumference: getCicleCircumference,
