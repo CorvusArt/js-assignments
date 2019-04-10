@@ -201,9 +201,13 @@ function getTail(arr, n) {
  *    +'30,31,32,33,34'
  */
 function toCsvText(arr) {
-  throw new Error('Not implemented');
+  return arr.reduce((acc, val) => acc.concat(val + '\n'), '').slice(0, -1);
 }
+  
 
+//  array.reduce((acc, cur) => {
+// acc.concat(cur.join(';', '\n'))
+//  }, '').slice(-1)
 /**
  * Transforms the numeric array into the according array of squares:
  *   f(x) = x * x
