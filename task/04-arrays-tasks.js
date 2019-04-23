@@ -40,7 +40,6 @@ function generateOdds(len) {
   return Array.from({length: len}, (y, x) => 2 * x + 1);
 }
 
-
 /**
  * Returns the doubled array - elements of the specified array are repeated twice
  * using original order
@@ -251,7 +250,7 @@ function getMovingSum(arr) {
  * [ "a" ] => []
  */
 function getSecondItems(arr) {
-    return arr.filter((el, i) => i % 2);
+  return arr.filter((el, i) => i % 2);
 }
 
 
@@ -270,9 +269,10 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-  throw new Error('Not implemented');
+  return arr.reduce((acc, value, i) => {
+    return acc.concat(Array(i + 1).fill(value));
+  }, []);
 }
-
 
 /**
  * Returns the 3 largest numbers from the specified array
@@ -288,7 +288,7 @@ function propagateItemsByPositionIndex(arr) {
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
 function get3TopItems(arr) {
-  throw new Error('Not implemented');
+  return arr.sort((a, b) => a - b).slice(-3).reverse();
 }
 
 
@@ -306,7 +306,7 @@ function get3TopItems(arr) {
  *   [ 1, '2' ] => 1
  */
 function getPositivesCount(arr) {
-  throw new Error('Not implemented');
+  return arr.filter(el => typeof el === 'number' && el > 0).length;
 }
 
 /**
@@ -323,7 +323,8 @@ function getPositivesCount(arr) {
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
-  throw new Error('Not implemented');
+  const m = ['ze', 'on', 'tw', 'th', 'fo', 'fi', 'si', 'se', 'ei', 'ni'];
+  return arr.sort((a, b) => m.indexOf(a.slice(0, 2))-m.indexOf(b.slice(0, 2)));
 }
 
 /**
