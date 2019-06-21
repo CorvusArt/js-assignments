@@ -515,7 +515,11 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-  throw new Error('Not implemented');
+  return array.reduce((acc, cur) => {
+    if(!acc.has(keySelector(cur))) 
+    {acc.set(keySelector(cur), [valueSelector(cur)]);
+    } else {acc.get(keySelector(cur)).push(valueSelector(cur));}
+    return acc;}, new Map());
 }
 
 
@@ -533,7 +537,7 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-  throw new Error('Not implemented');
+  return arr.reduce((acc, cur) => [...acc, ...childrenSelector(cur)], []);
 }
 
 
@@ -550,7 +554,7 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-  throw new Error('Not implemented');
+  return indexes.reduce((acc, cur) => acc[cur], arr);
 }
 
 
@@ -573,7 +577,11 @@ function getElementByIndexes(arr, indexes) {
  *
  */
 function swapHeadAndTail(arr) {
-  throw new Error('Not implemented');
+  const pivot  = Math.ceil(arr.length / 2);
+  const head   = arr.length % 2 ? arr.slice(0, pivot - 1) : arr.slice(0, pivot);
+  const center = arr.length % 2 ? [arr[pivot - 1]] : [];
+  const tail   = arr.slice(pivot, arr.length);
+  return [...tail, ...center, ...head];
 }
 
 module.exports = {
