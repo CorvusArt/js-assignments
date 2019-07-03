@@ -236,7 +236,7 @@ function reverseString(str) {
 
 
 /**
- * Reverse the specified integer number (put all digits in reverse order)
+ * Reverse the specified integer number (put all ccn in reverse order)
  *
  * @param {number} num
  * @return {number}
@@ -258,7 +258,7 @@ function reverseInteger(num) {
  *
  * See algorithm here : https://en.wikipedia.org/wiki/Luhn_algorithm
  *
- * @param {number} cnn
+ * @param {number} ccn
  * @return {boolean}
  *
  * @example:
@@ -273,13 +273,29 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-  throw new Error('Not implemented');
+  let sum = 0;
+  const num = ccn + '';
+  for (let i = 0; i < num.length; i++) {
+    let cardNum = parseInt(num[i]);
+  
+    if ((num.length - i) % 2 === 0) {
+      cardNum = cardNum * 2;
+  
+      if (cardNum > 9) {
+        cardNum = cardNum - 9;        }
+    }
+  
+    sum += cardNum;
+  }
+  
+  return sum % 10 === 0;
 }
+
 
 
 /**
  * Returns the digital root of integer:
- *   step1 : find sum of all digits
+ *   step1 : find sum of all ccn
  *   step2 : if sum > 9 then goto step1 otherwise return the sum
  *
  * @param {number} n
