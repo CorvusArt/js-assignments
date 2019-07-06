@@ -49,7 +49,7 @@ function getFizzBuzz(num) {
  */
 function getFactorial(n) {
   if (n === 0 || n === 1) return 1;
-  for (const i = n - 1; i >= 1 ; i--) {
+  for (let i = n - 1; i >= 1 ; i--) {
     n = n * i;
   }
   return n;
@@ -179,7 +179,7 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-  for (const i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i++) {
     const c = str.charAt(i);
     if (str.indexOf(c) === i && str.indexOf(c, i + 1) === -1) {
       return c;
@@ -273,10 +273,10 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-  const sum = 0;
+  let sum = 0;
   const num = ccn + '';
-  for (const i = 0; i < num.length; i++) {
-    const cardNum = parseInt(num[i]);
+  for (let i = 0; i < num.length; i++) {
+    let cardNum = parseInt(num[i]);
   
     if ((num.length - i) % 2 === 0) {
       cardNum = cardNum * 2;
@@ -309,8 +309,8 @@ function isCreditCardNumber(ccn) {
  */
 function getDigitalRoot(num) {
   const str = String(num);
-  const sum = 0;
-  for (const i = 0; i < str.length; i++){
+  let sum = 0;
+  for (let i = 0; i < str.length; i++){
     sum += parseInt(str[i]);
   }
   if (sum > 9){
@@ -350,7 +350,7 @@ function isBracketsBalanced(str) {
     '<': '>'
   };
 
-  for (const i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i++) {
 
     // If character is an opening brace add it to a stack
     if (str[i] === '(' || str[i] === '{' || str[i] === '[' || str[i] === '<') {
