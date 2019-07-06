@@ -49,7 +49,7 @@ function getFizzBuzz(num) {
  */
 function getFactorial(n) {
   if (n === 0 || n === 1) return 1;
-  for (let i = n - 1; i >= 1 ; i--) {
+  for (const i = n - 1; i >= 1 ; i--) {
     n = n * i;
   }
   return n;
@@ -179,7 +179,7 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-  for (let i = 0; i < str.length; i++) {
+  for (const i = 0; i < str.length; i++) {
     const c = str.charAt(i);
     if (str.indexOf(c) === i && str.indexOf(c, i + 1) === -1) {
       return c;
@@ -273,10 +273,10 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-  let sum = 0;
+  const sum = 0;
   const num = ccn + '';
-  for (let i = 0; i < num.length; i++) {
-    let cardNum = parseInt(num[i]);
+  for (const i = 0; i < num.length; i++) {
+    const cardNum = parseInt(num[i]);
   
     if ((num.length - i) % 2 === 0) {
       cardNum = cardNum * 2;
@@ -308,7 +308,15 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-  throw new Error('Not implemented');
+  const str = String(num);
+  const sum = 0;
+  for (const i = 0; i < str.length; i++){
+    sum += parseInt(str[i]);
+  }
+  if (sum > 9){
+    sum = String(num);
+    sum = parseInt(sum[0]) + parseInt(sum[1]);
+  }return sum;
 }
 
 
@@ -334,8 +342,34 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true
  */
 function isBracketsBalanced(str) {
-  throw new Error('Not implemented');
+  const stack = [];
+  const map = {
+    '(': ')',
+    '[': ']',
+    '{': '}',
+    '<': '>'
+  };
+
+  for (const i = 0; i < str.length; i++) {
+
+    // If character is an opening brace add it to a stack
+    if (str[i] === '(' || str[i] === '{' || str[i] === '[' || str[i] === '<') {
+      stack.push(str[i]);
+    }
+    //  If that character is a closing brace, pop from the stack, which will also reduce the length of the stack each time a closing bracket is encountered.
+    else {
+      const last = stack.pop();
+
+      //If the popped element from the stack, which is the last opening brace doesn’t match the corresponding closing brace in the map, then return false
+      if (str[i] !== map[last]) return false;
+    }
+  }
+  // By the compconstion of the for loop after checking all the brackets of the str, at the end, if the stack is not empty then fail
+  if (stack.length !== 0) return false;
+
+  return true;
 }
+
 
 
 /**
@@ -370,8 +404,47 @@ function isBracketsBalanced(str) {
  *
  */
 function timespanToHumanString(startDate, endDate) {
-  throw new Error('Not implemented');
+  const diff   = endDate - startDate;
+  const fewsec = 45000;
+  const min    = 90000;
+  const minMor = 2700000;
+  const hour   = 5400000;
+  const biHour = 79200000;
+  const days   = 129600000;
+  const weeks  = 2160000000;
+  const month  = 3888000000;
+  const monthB = 29808000000;
+  const years  = 47088000000;
+
+  if (diff <= fewsec) return 'a few seconds ago';
+  if (diff <= min) return 'a minute ago';
+  if (diff <= minMor) {
+    const curMin = Math.ceil(diff / 60 / 1000 );
+    return `${curMin} minutes ago`;
+  }
+  if (diff <= hour) return 'an hour ago';
+  if (diff <= biHour) {
+    const curHour = Math.ceil(diff / 60 * 60 / 1000);
+    return `${curHour} hours ago`;
+  }
+  if (diff <= days) return 'a day ago';
+  if (diff <= weeks) {
+    const curWeek = Math.ceil(diff / 24 / 60 * 60 / 1000);
+    return `${curWeek} days ago`;
+  }
+  if (diff <= month) return 'a month ago';
+  if (diff <= monthB) {
+    const curMonth = Math.ceil(diff / 24/ 60 * 60 / 1000); 
+    return `${curMonth} months ago`;
+  }
+  if (diff <= years) return 'a year ago';
+  if (diff > years) {
+    const curYear = Math.ceil(diff / 24/ 60 * 60 / 1000);
+    return `${curYear} years ago`;}
 }
+
+  
+
 
 
 /**
@@ -395,7 +468,7 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-  throw new Error('Not implemented');
+  return num.toString(n);
 }
 
 
