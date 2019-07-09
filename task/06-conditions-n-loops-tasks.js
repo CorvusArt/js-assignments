@@ -485,8 +485,18 @@ function toNaryString(num, n) {
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
 function getCommonDirectoryPath(pathes) {
-  throw new Error('Not implemented');
+  
+  const result = [];
+  for (let i = 0; i <= pathes.length; i++) {
+    for(let j = 0; j <= pathes[i].length; j++){
+      if (pathes[i][j] === pathes[i + 1][j]){
+        result.push(pathes[i][j]);
+      }
+      return result.join('');
+    }
+  }
 }
+
 
 
 /**
@@ -508,8 +518,20 @@ function getCommonDirectoryPath(pathes) {
  *
  */
 function getMatrixProduct(m1, m2) {
-  throw new Error('Not implemented');
+  const result = [];
+  for (let i = 0; i < m1.length; i++) {
+    result[i] = [];
+    for (let j = 0; j < m2[0].length; j++) {
+      var sum = 0;
+      for (let k = 0; k < m1[0].length; k++) {
+        sum += m1[i][k] * m2[k][j];
+      }
+      result[i][j] = sum;
+    }
+  }
+  return result;
 }
+
 
 
 /**
@@ -543,7 +565,32 @@ function getMatrixProduct(m1, m2) {
  *
  */
 function evaluateTicTacToePosition(position) {
-  throw new Error('Not implemented');
+  
+  const arr = position.map(el => {
+    let str = '';
+    for (let i = 0; i < 3; i++){
+      str += el[i] || '_';
+    } 
+    return str;
+  }).join('');
+  
+  function winner(cell1, cell2, cell3){
+    const int1 = arr.charAt(cell1);
+    const int2 = arr.charAt(cell2);
+    const int3 = arr.charAt(cell3);
+    if (int1 === '_') return undefined;
+    if (int1 !== int2) return undefined;
+    if (int1 !== int3) return undefined;
+    return int1;
+  }
+  return winner(0, 1, 2)
+  || winner(3, 4, 5)
+  ||  winner(6, 7, 8) 
+  ||  winner(0, 3, 6)
+  ||  winner(1, 4, 7) 
+  ||  winner(2, 5, 8) 
+  ||  winner(0, 4, 8)
+  ||  winner(6, 4, 2);
 }
 
 module.exports = {
