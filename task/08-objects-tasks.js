@@ -22,8 +22,19 @@
  *    console.log(r.getArea());   // => 200
  */
 function Rectangle(width, height) {
-  throw new Error('Not implemented');
+  this.width = width;
+  this.height = height;
 }
+
+Rectangle.prototype = {
+  constructor: Rectangle,
+  getArea() {
+    return this.width * this.height;
+  }
+};
+
+
+
 
 
 /**
@@ -37,7 +48,7 @@ function Rectangle(width, height) {
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
 function getJSON(obj) {
-  throw new Error('Not implemented');
+  return JSON.stringify(obj);
 }
 
 
@@ -53,7 +64,7 @@ function getJSON(obj) {
  *
  */
 function fromJSON(proto, json) {
-  throw new Error('Not implemented');
+  return Object.setPrototypeOf(JSON.parse(json), proto);
 }
 
 
@@ -113,35 +124,96 @@ function fromJSON(proto, json) {
  */
 
 const cssSelectorBuilder = {
-
+  stringify() {
+    return  this.selector;
+  },
   element(value) {
-    throw new Error('Not implemented');
+    // return new ElementSelector(value);
   },
 
   id(value) {
-    throw new Error('Not implemented');
+    const inst = Object.create(this);
+    inst.selector += '#' + value;
+    return inst;
   },
 
   class(value) {
-    throw new Error('Not implemented');
+    const inst = Object.create(this);
+    inst.selector += '.' + value;
+    return inst;
   },
 
   attr(value) {
-    throw new Error('Not implemented');
+    const inst = Object.create(this);
+    inst.selector += '[' + value + ']';
+    return inst;
   },
 
   pseudoClass(value) {
-    throw new Error('Not implemented');
+    const inst = Object.create(this);
+    inst.selector += ':' + value;
+    return inst;
   },
 
   pseudoElement(value) {
-    throw new Error('Not implemented');
+    const inst = Object.create(this);
+    inst.selector += '::' + value;
+    return inst;
   },
 
   combine(selector1, combinator, selector2) {
-    throw new Error('Not implemented');
+    const inst = Object.create(this);
+    inst.selector = `${
+      selector1.stringify()} ${combinator} ${selector2.stringify()}`;
+    return inst;
   }
 };
+
+// class ElementSelector extends BaseSelector {
+//   constructor(value) {
+//     super();
+//     this.selector = value;
+//   }
+
+//   id (value) {
+//     return new IdSelector(`${this.selector}${value}`);
+//   }
+// }
+
+// class IdSelector extends BaseSelector {
+//   constructor(value) {
+//     super();
+//     this.selector = value;
+//   }
+
+//   id (value) {
+//     if (this.id === value) throw new Error('Cannot have 2 ids');
+//     return new IdSelector(`${this.selector}${value}`);
+//   }
+// }
+
+// class BaseSelector {
+//   constructor() {
+//     this.id = '';
+//     this.element = '';
+//   }
+
+//   element () {
+//     throw new Error('Not implemented');
+//   }
+
+//   id() {
+//     throw new Error('Not implemented');
+//   }
+
+//   pseudElement () {
+//     throw new Error('Not implemented');
+//   }
+// }
+
+// const b = cssSelectorBuilder.element('div').id('nav').stringify();
+
+// console.log(b);
 
 module.exports = {
   Rectangle: Rectangle,

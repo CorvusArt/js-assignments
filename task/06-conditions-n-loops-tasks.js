@@ -405,40 +405,40 @@ function isBracketsBalanced(str) {
  */
 function timespanToHumanString(startDate, endDate) {
   const diff   = endDate - startDate;
-  const fewsec = 45000;
-  const min    = 90000;
-  const minMor = 2700000;
-  const hour   = 5400000;
-  const biHour = 79200000;
-  const days   = 129600000;
-  const weeks  = 2160000000;
-  const month  = 3888000000;
-  const monthB = 29808000000;
-  const years  = 47088000000;
+  const secRange = 45000;
+  const minRange    = 90000;
+  const minRangeBig = 2700000;
+  const hourRange   = 5400000;
+  const bigHourRange = 79200000;
+  const daysRange   = 129600000;
+  const manyDaysRange  = 2160000000;
+  const monthRange  = 3888000000;
+  const manyMonthRange = 29808000000;
+  const yearsRange  = 47088000000;
 
-  if (diff <= fewsec) return 'a few seconds ago';
-  if (diff <= min) return 'a minute ago';
-  if (diff <= minMor) {
+  if (diff <= secRange) return 'a few seconds ago';
+  if (diff <= minRange) return 'a minute ago';
+  if (diff <= minRangeBig) {
     const curMin = Math.ceil(diff / 60 / 1000 );
     return `${curMin} minutes ago`;
   }
-  if (diff <= hour) return 'an hour ago';
-  if (diff <= biHour) {
+  if (diff <= hourRange) return 'an hour ago';
+  if (diff <= bigHourRange) {
     const curHour = Math.ceil(diff / 60 * 60 / 1000);
     return `${curHour} hours ago`;
   }
-  if (diff <= days) return 'a day ago';
-  if (diff <= weeks) {
+  if (diff <= daysRange) return 'a day ago';
+  if (diff <= manyDaysRange) {
     const curWeek = Math.ceil(diff / 24 / 60 * 60 / 1000);
     return `${curWeek} days ago`;
   }
-  if (diff <= month) return 'a month ago';
-  if (diff <= monthB) {
+  if (diff <= monthRange) return 'a month ago';
+  if (diff <= manyMonthRange) {
     const curMonth = Math.ceil(diff / 24/ 60 * 60 / 1000); 
     return `${curMonth} months ago`;
   }
-  if (diff <= years) return 'a year ago';
-  if (diff > years) {
+  if (diff <= yearsRange) return 'a year ago';
+  if (diff > yearsRange) {
     const curYear = Math.ceil(diff / 24/ 60 * 60 / 1000);
     return `${curYear} years ago`;}
 }
