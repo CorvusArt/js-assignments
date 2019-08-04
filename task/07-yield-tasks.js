@@ -59,10 +59,12 @@ the wall.';
  *
  */
 function* getFibonacciSequence() {
-  [a, b] = [0, 1];
+  yield 0;
+  yield 1;
+  let [a, b] = [0, 1];
   while (true) {
-    yield a;
-    [a, b] = [a, a + b];
+    yield a + b;
+    [a, b] = [b, a + b];
   }
 }
 
@@ -98,7 +100,12 @@ function* getFibonacciSequence() {
  *
  */
 function* depthTraversalTree(root) {
-  throw new Error('Not implemented');
+  yield root;
+  if (root.children) {
+    for (const node of root.children) {
+      yield* depthTraversalTree(node);
+    }
+  }
 }
 
 
@@ -124,7 +131,12 @@ function* depthTraversalTree(root) {
  *
  */
 function* breadthTraversalTree(root) {
-  throw new Error('Not implemented');
+  yield root.n;
+  if (root.children) {
+    for (const node of root.children) {
+      yield node.n;
+    }
+  }
 }
 
 
